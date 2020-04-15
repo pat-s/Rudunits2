@@ -43,8 +43,9 @@ CPPFLAGS="${UD_CPPFLAGS} ${CPPFLAGS}"
 
 UD_ERROR=""
 AC_CHECK_HEADER(udunits2.h, [], UD_ERROR="udunits2.h not found")
-AC_CHECK_LIB(udunits2, ut_read_xml, [],
-             UD_ERROR="libudunits2.a not found", ${LIBS})
+AC_CHECK_LIB(udunits2, ut_read_xml,
+             LIBS="${LIBS} -ludunits2",
+             UD_ERROR="libudunits2.so was not found")
 
 if test "${UD_ERROR}" != ""  ; then
     echo "-----Error: ${UD_ERROR}-----"
